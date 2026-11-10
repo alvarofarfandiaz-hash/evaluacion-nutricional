@@ -227,6 +227,66 @@ table.reft{border-collapse:collapse;font-size:.85rem;min-width:100%}
 .gdel{border:1px solid var(--line);background:transparent;border-radius:50%;width:26px;height:26px;cursor:pointer;color:var(--muted);font-size:1rem;line-height:1}
 .gdel:hover{color:var(--s-obes);border-color:var(--s-obes)}
 .addg{border-top:1px dashed var(--line);padding-top:10px}
+/* ---------- informe PDF ---------- */
+#report{--bg:#ffffff;--surface:#ffffff;--surface-2:#f3eff8;--ink:#1d1726;--muted:#5b5366;--line:#ddd5e6;--brand:#6a1bb0;--brand-ink:#ffffff;
+  --s-deficit:#2b5bc4;--s-riesgo:#2f97cf;--s-normal:#2a8f50;--s-sobre:#c97d08;--s-obes:#cf3f2a;--s-severa:#8c1c22;--t-alta:#0f7f73;--t-normalalta:#3ca594;
+  color-scheme:light;color:var(--ink);background:#e7e2ee;min-height:100vh;padding-bottom:40px}
+#report[hidden]{display:none!important}
+html.rp-open main,html.rp-open .topbar{display:none!important}
+.rp-bar{background:#ffffff;border-bottom:1px solid var(--line);position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
+.rp-bar-in{max-width:820px;margin:0 auto;padding-block:12px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:10px}
+.rp-fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+.rp-fields label{display:grid;gap:4px;font-weight:700;font-size:.85rem}
+.rp-fields input{border:1.5px solid var(--line);border-radius:10px;padding:8px 10px;background:#fff;color:var(--ink);font-size:1rem;min-width:0}
+.rp-actions{display:flex;gap:8px;flex-wrap:wrap}
+.rp-hint{font-size:.8rem;color:var(--muted)}
+.rp-page{max-width:820px;margin:16px auto 0;background:#fff;padding:28px clamp(16px,4vw,40px);border-radius:8px;box-shadow:0 2px 12px rgba(40,20,70,.12);display:grid;gap:18px}
+.rp-head{display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px 14px;align-items:center;border-bottom:3px solid var(--brand);padding-bottom:14px}
+.rp-head h1{font-size:1.55rem;font-weight:800}
+.rp-kicker{font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--brand);font-weight:700}
+.rp-meta{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:0}
+.rp-meta dt{font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.rp-meta dd{margin:0;font-weight:700;overflow-wrap:anywhere}
+.rp-sec h2{font-size:1.1rem;font-weight:700;border-bottom:1px solid var(--line);padding-bottom:4px;margin-bottom:10px}
+.rp-data{width:100%;border-collapse:collapse;font-size:.9rem}
+.rp-data tbody{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));column-gap:24px}
+.rp-data tr{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);padding:5px 0}
+.rp-data th{font-weight:400;color:var(--muted);text-align:left}
+.rp-data td{font-weight:700;text-align:right;font-variant-numeric:tabular-nums}
+.rp-res .results{gap:10px}
+.rp-res .card{box-shadow:none}
+.rp-res .ind.det{box-shadow:0 0 0 1px var(--brand)}
+.rp-res .card,.rp-res .ind,.rp-res .section-pad{break-inside:avoid}
+.rp-res .gauge{max-width:300px}
+.rp-foot{font-size:.78rem;color:var(--muted);border-top:1px solid var(--line);padding-top:10px;display:grid;gap:4px}
+@media (max-width:520px){.rp-meta{grid-template-columns:1fr 1fr}}
+@media print{
+  @page{size:A4;margin:12mm}
+  html,body{background:#fff!important}
+  :root{padding:0!important}
+  body::before{display:none!important}
+  .no-print{display:none!important}
+  html.rp-open body>*:not(#report){display:none!important}
+  #report{background:#fff;padding:0;min-height:0}
+  html,html[data-size]{font-size:10.5px!important}
+  .rp-page{box-shadow:none;margin:0;padding:0;max-width:none;border-radius:0;gap:9px}
+  .rp-head{padding-bottom:8px;gap:6px 12px}
+  .rp-head img{width:40px;height:40px}
+  .rp-head h1{font-size:1.45rem}
+  .rp-sec h2{font-size:1.05rem;margin-bottom:6px}
+  .rp-data tr{padding:2px 0}
+  .rp-res .results{gap:7px}
+  .rp-res .ind-list{gap:7px}
+  .rp-res .card,.rp-res .verdict,.rp-res .section-pad,.rp-res .ind{padding:9px 12px;gap:7px;border-radius:8px}
+  .rp-res .gauge{max-width:210px}
+  .rp-res .ruler{max-width:330px}
+  .rp-res .chart{max-width:430px;margin:0 auto}
+  .rp-res .big{font-size:2.3rem}
+  .rp-res .pill{font-size:1.35rem}
+  .rp-res .note{font-size:.82rem;line-height:1.35}
+  .rp-foot{font-size:.72rem;padding-top:6px;gap:2px;line-height:1.3}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
 .view[hidden]{display:none!important}
 @media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
 </style>
@@ -1149,7 +1209,7 @@ ENUTA.setFrisancho({"CB":{"M":[[142,146,150,159,170,176,183],[141,145,153,162,17
 
   /* ---------- copiar resumen ---------- */
   function copyBlock(id) {
-    return '<div class="copyrow"><button type="button" class="btn btn-primary" data-copy="' + id + '"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>Copiar resumen</button><span class="copied" hidden>Resumen copiado</span></div><textarea id="' + id + '" hidden readonly></textarea>';
+    return '<div class="copyrow"><button type="button" class="btn btn-primary" data-copy="' + id + '"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>Copiar resumen</button><button type="button" class="btn btn-quiet" data-report="' + id.replace("cp-", "") + '"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>Informe PDF</button><span class="copied" hidden>Resumen copiado</span></div><textarea id="' + id + '" hidden readonly></textarea>';
   }
   document.addEventListener("click", function (ev) {
     var b = ev.target.closest("[data-copy]"); if (!b) return;
@@ -1402,7 +1462,8 @@ ENUTA.setFrisancho({"CB":{"M":[[142,146,150,159,170,176,183],[141,145,153,162,17
   Object.keys(EXAMPLES).forEach(function (id) {
     var form = document.getElementById(id); fill(form, EXAMPLES[id]);
     var badge = form.querySelector("[data-example]");
-    function onChange(e) { if (e && e.isTrusted && badge) badge.hidden = true; RENDER[id](); }
+    var lastKey = null;
+    function onChange(e) { if (e && e.isTrusted && badge) badge.hidden = true; var k = JSON.stringify(formData(form)); if (k === lastKey) return; lastKey = k; RENDER[id](); }
     form.addEventListener("input", onChange);
     form.addEventListener("change", onChange);
     form.addEventListener("submit", function (e) { e.preventDefault(); });
@@ -1682,6 +1743,95 @@ ENUTA.setFrisancho({"CB":{"M":[[142,146,150,159,170,176,183],[141,145,153,162,17
   window.addEventListener("hashchange", function () { if (location.hash === "#grupo") render(); });
   if (location.hash === "#grupo") render();
   updateBadge();
+})();
+
+/* App Evaluación Nutricional · informe imprimible / PDF */
+(function () {
+  "use strict";
+  var MOD = {
+    ninos: { form: "f-ninos", res: "r-ninos", titulo: "Niños, niñas y adolescentes", ref: "Patrones de crecimiento MINSAL 2018 (OMS 2006/2007)." },
+    emb: { form: "f-emb", res: "r-emb", titulo: "Gestantes", ref: "Curva de Atalah modificada, MINSAL 2019; incremento de peso según estado pregestacional (MINSAL)." },
+    adultos: { form: "f-adultos", res: "r-adultos", titulo: "Adultos", ref: "IMC OMS; cintura OMS 2008; Frisancho 1981; Durnin y Womersley 1974 con Siri 1961; Gallagher 2000." },
+    mayor: { form: "f-mayor", res: "r-mayor", titulo: "Personas mayores", ref: "IMC MINSAL (EMPAM); Frisancho 1981." }
+  };
+  var LBL = { sexo: "Sexo", nacimiento: "Fecha de nacimiento", evaluacion: "Fecha de evaluación", semanas: "Semanas de gestación", edad: "Edad (años)",
+    peso: "Peso (kg)", talla: "Talla (cm)", pesoPre: "Peso pregestacional (kg)", multiple: "Embarazo múltiple", posicion: "Posición de medición",
+    eg: "Edad gestacional al nacer (sem)", pce: "Perímetro cefálico (cm)", cintura: "Cintura (cm)", cb: "Circunferencia de brazo (cm)",
+    bicipital: "Pliegue bicipital (mm)", tricipital: "Pliegue tricipital (mm)", subescapular: "Pliegue subescapular (mm)", suprailiaco: "Pliegue suprailíaco (mm)",
+    pantorrilla: "Pliegue pantorrilla (mm)", maduracion: "Maduración sexual" };
+  function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function fecha(iso) { var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || ""); return m ? m[3] + "-" + m[2] + "-" + m[1] : iso; }
+  function hoy() { var d = new Date(); return String(d.getDate()).padStart(2, "0") + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + d.getFullYear(); }
+
+  function datos(form) {
+    var d = {};
+    Array.prototype.forEach.call(form.querySelectorAll("input,select"), function (i) {
+      if (i.type === "radio") { if (i.checked) d[i.name] = i.value; }
+      else if (i.type === "checkbox") d[i.name] = i.checked;
+      else if (i.type !== "file") d[i.name] = i.value;
+    });
+    var rows = [];
+    Object.keys(LBL).forEach(function (k) {
+      if (!(k in d)) return;
+      var v = d[k];
+      if (k === "multiple") { if (v) rows.push([LBL[k], "Sí"]); return; }
+      if (v === "" || v == null) return;
+      if (k === "sexo") v = v === "F" ? "Femenino" : "Masculino";
+      else if (k === "nacimiento" || k === "evaluacion") v = fecha(v);
+      else if (k === "posicion") v = { auto: "Según la edad", acostado: "Acostado (longitud)", pie: "De pie (estatura)" }[v] || v;
+      else if (k === "maduracion") { if (!d.tricipital || d.sexo === "F") return; v = { pre: "Prepúber", pub: "Púber", post: "Pospúber" }[v] || v; }
+      rows.push([LBL[k], v]);
+    });
+    return { d: d, rows: rows };
+  }
+
+  function abrir(key) {
+    var m = MOD[key], form = document.getElementById(m.form), res = document.getElementById(m.res);
+    if (!res || res.querySelector(".errors")) { alertar(form, "Completa los datos para generar el informe."); return; }
+    var info = datos(form);
+    var clon = res.cloneNode(true);
+    clon.removeAttribute("id");
+    Array.prototype.forEach.call(clon.querySelectorAll("[id]"), function (e) { e.removeAttribute("id"); });
+    Array.prototype.forEach.call(clon.querySelectorAll(".copyrow, textarea, details, [data-copy]"), function (e) {
+      var card = e.closest(".card"); if (e.classList.contains("copyrow") && card) card.remove(); else e.remove();
+    });
+    var logo = document.querySelector(".brand img").getAttribute("src");
+    var rep = document.getElementById("report");
+    if (!rep) { rep = document.createElement("div"); rep.id = "report"; document.body.appendChild(rep); }
+    rep.innerHTML =
+      '<div class="rp-bar no-print"><div class="rp-bar-in">' +
+        '<div class="rp-fields"><label>Nombre o código<input id="rp-nombre" value="' + esc(info.d.codigo || "") + '" placeholder="Ej.: Est. 01"></label>' +
+        '<label>Evaluado por<input id="rp-eval" placeholder="Nombre de quien evalúa"></label></div>' +
+        '<div class="rp-actions"><button type="button" class="btn btn-primary" id="rp-print">Guardar PDF / Imprimir</button><button type="button" class="btn btn-quiet" id="rp-close">Cerrar</button></div>' +
+        '<p class="rp-hint">En el celular: Guardar PDF → elige «Guardar como PDF» (Android) o comparte y elige «Imprimir» y luego «Guardar en Archivos» (iPhone).</p>' +
+      "</div></div>" +
+      '<article class="rp-page">' +
+        '<header class="rp-head"><img src="' + logo + '" alt="" width="54" height="54"><div><p class="rp-kicker">Informe de evaluación nutricional</p><h1>' + esc(m.titulo) + "</h1></div>" +
+        '<dl class="rp-meta"><div><dt>Nombre o código</dt><dd id="rp-n">' + esc(info.d.codigo || "—") + '</dd></div><div><dt>Fecha del informe</dt><dd>' + hoy() + '</dd></div><div><dt>Evaluado por</dt><dd id="rp-e">—</dd></div></dl></header>' +
+        '<section class="rp-sec"><h2>Datos ingresados</h2><table class="rp-data"><tbody>' + info.rows.map(function (r) { return "<tr><th>" + esc(r[0]) + "</th><td>" + esc(r[1]) + "</td></tr>"; }).join("") + "</tbody></table></section>" +
+        '<section class="rp-sec"><h2>Resultados</h2><div class="rp-res"></div></section>' +
+        '<footer class="rp-foot"><p><b>Referencias:</b> ' + esc(m.ref) + " Generado con App Evaluación Nutricional (MSc., PhD(c). Álvaro Farfán Díaz). Herramienta docente: no reemplaza el diagnóstico nutricional integrado ni el juicio clínico.</p></footer>" +
+      "</article>";
+    rep.querySelector(".rp-res").appendChild(clon);
+    rep.hidden = false;
+    document.documentElement.classList.add("rp-open");
+    window.scrollTo(0, 0);
+    var nom = rep.querySelector("#rp-nombre"), ev = rep.querySelector("#rp-eval");
+    nom.addEventListener("input", function () { rep.querySelector("#rp-n").textContent = nom.value || "—"; });
+    ev.addEventListener("input", function () { rep.querySelector("#rp-e").textContent = ev.value || "—"; });
+    rep.querySelector("#rp-close").addEventListener("click", cerrar);
+    rep.querySelector("#rp-print").addEventListener("click", function () {
+      var prev = document.title, n = (nom.value || "informe").replace(/[^\wáéíóúñÁÉÍÓÚÑ.-]+/g, "_");
+      document.title = "Informe_" + key + "_" + n;
+      try { window.print(); } catch (e) { }
+      setTimeout(function () { document.title = prev; }, 1500);
+    });
+  }
+  function cerrar() { var rep = document.getElementById("report"); if (rep) rep.hidden = true; document.documentElement.classList.remove("rp-open"); }
+  function alertar(form, t) { var msg = form.querySelector("[data-add-msg]"); if (msg) { msg.textContent = t; msg.style.color = "var(--s-obes)"; msg.hidden = false; } }
+  document.addEventListener("click", function (ev) { var b = ev.target.closest("[data-report]"); if (b) abrir(b.getAttribute("data-report")); });
+  window.addEventListener("hashchange", cerrar);
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") cerrar(); });
 })();
 
 </script>
