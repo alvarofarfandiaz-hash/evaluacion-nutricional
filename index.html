@@ -28,7 +28,7 @@
   --focus:#7b1fc4;
   --f-display:"Baloo 2","Trebuchet MS",system-ui,sans-serif;
   --f-body:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-  --h-ninos:#cf540a; --h-emb:#b07500; --h-adultos:#5b8a27; --h-mayores:#08705f;
+  --h-energia:#9a3412; --h-ninos:#cf540a; --h-emb:#b07500; --h-adultos:#5b8a27; --h-mayores:#08705f;
   --r-lg:18px; --r-md:12px; --r-sm:8px;
   --shadow:0 1px 2px rgba(40,20,70,.06),0 6px 20px rgba(40,20,70,.06);
 }
@@ -102,6 +102,9 @@ button,input,select{font:inherit;color:inherit}
 /* ---------- módulos ---------- */
 .mod-head{--mod:var(--brand);background:var(--mod);color:#fff}
 .mod-head .wrap{display:flex;align-items:center;gap:14px;padding-block:14px}
+.mod-ico{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.18);box-shadow:0 0 0 3px rgba(255,255,255,.55);flex:none}
+.mod-ico svg{width:30px;height:30px;color:#fff}
+.home .gstrip+.gstrip{margin-top:-14px}
 .mod-head img{width:56px;height:56px;border-radius:50%;box-shadow:0 0 0 3px rgba(255,255,255,.55)}
 .mod-head h2{font-size:clamp(1.35rem,4vw,1.9rem);font-weight:800;color:#fff}
 .mod-head p{font-size:.92rem;opacity:.95}
@@ -325,6 +328,7 @@ html.rp-open main,html.rp-open .topbar{display:none!important}
       <a class="tile" href="#adultos" style="--mod:var(--c-adultos)"><img src="data:image/webp;base64,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" alt="" width="108" height="108"><h2>Adultos</h2><span class="range">19 a 64 años</span><span class="ref">IMC OMS · cintura OMS 2008</span></a>
       <a class="tile" href="#adulto-mayor" style="--mod:var(--c-mayores)"><img src="data:image/webp;base64,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" alt="" width="108" height="108"><h2>Personas mayores</h2><span class="range">65 años y más</span><span class="ref">IMC MINSAL (EMPAM)</span></a>
     </nav>
+    <a class="gstrip card" href="#energia"><span><b>Requerimiento energético</b><span class="note">Gasto basal por ecuaciones, factor de actividad y calorías según el objetivo: mantener, perder grasa o ganar masa muscular.</span></span><span class="gstrip-go" aria-hidden="true">→</span></a>
     <a class="gstrip card" href="#grupo"><span><b>Evaluación grupal</b><span class="note">Junta a todo un curso o laboratorio, revisa la distribución por categoría y exporta los resultados a Excel.</span></span><span class="gstrip-go" aria-hidden="true">→</span></a>
     <div class="home-foot">
       <span>Basada en la app enUTA (Universidad de Tarapacá, 2017).</span>
@@ -518,6 +522,66 @@ html.rp-open main,html.rp-open .topbar{display:none!important}
   </div>
 </section>
 
+<!-- ================= ENERGÍA ================= -->
+<section class="view" id="v-energia" hidden>
+  <div class="mod-head" style="--mod:var(--h-energia)">
+    <div class="wrap">
+      <a class="back" href="#" aria-label="Volver al inicio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a>
+      <span class="mod-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2c1 4 5 6 5 11a5 5 0 0 1-10 0c0-3 2-4 2-7 2 1 3 3 3 5 1-1 1-3 0-9z"/></svg></span>
+      <div><h2>Requerimiento energético</h2><p>Adultos · gasto basal, factor de actividad y objetivo</p></div>
+    </div>
+  </div>
+  <div class="wrap mod-body">
+    <form class="card form" id="f-energia" autocomplete="off" novalidate>
+      <div class="form-head"><h3>Datos</h3><span class="badge" data-example>Ejemplo</span></div>
+      <button type="button" class="btn btn-quiet" id="en-import" style="justify-self:start">Usar datos del módulo Adultos</button>
+      <div class="field"><span class="lbl" id="en-sexo-l">Sexo</span>
+        <div class="seg" role="radiogroup" aria-labelledby="en-sexo-l">
+          <input type="radio" name="sexo" id="en-sexo-m" value="M" checked><label for="en-sexo-m">Hombre</label>
+          <input type="radio" name="sexo" id="en-sexo-f" value="F"><label for="en-sexo-f">Mujer</label>
+        </div>
+      </div>
+      <div class="row2">
+        <div class="field"><label for="en-edad">Edad</label><div class="inp"><input id="en-edad" name="edad" inputmode="numeric" placeholder="30"><span class="unit">años</span></div></div>
+        <div class="field"><label for="en-peso">Peso</label><div class="inp"><input id="en-peso" name="peso" inputmode="decimal" placeholder="70,0"><span class="unit">kg</span></div></div>
+        <div class="field"><label for="en-talla">Talla</label><div class="inp"><input id="en-talla" name="talla" inputmode="decimal" placeholder="170"><span class="unit">cm</span></div></div>
+        <div class="field"><label for="en-grasa">% de grasa <span class="hint">(opcional)</span></label><div class="inp"><input id="en-grasa" name="grasa" inputmode="decimal" placeholder="Ej.: 22"><span class="unit">%</span></div></div>
+      </div>
+      <div class="field"><label for="en-ref">Referencia del factor de actividad</label>
+        <div class="inp"><select id="en-ref" name="refact">
+          <option value="fao">FAO/OMS/UNU 2004</option>
+          <option value="iom">IOM 2005 (Dietary Reference Intakes)</option>
+          <option value="clasico">Factores clásicos (1,2 a 1,9)</option>
+        </select></div>
+      </div>
+      <div class="field"><label for="en-act">Nivel de actividad física</label>
+        <div class="inp"><select id="en-act" name="actividad"><option value="0">Sedentario</option></select></div>
+        <p class="hint" id="en-act-desc"></p>
+      </div>
+      <div class="field" id="en-factor-f" hidden><label for="en-factor">Factor de actividad</label><div class="inp"><input id="en-factor" name="factor" inputmode="decimal" placeholder="Ej.: 1,6"></div></div>
+      <div class="field"><label for="en-obj">Objetivo</label>
+        <div class="inp"><select id="en-obj" name="objetivo">
+          <option value="mantener">Mantener el peso</option>
+          <option value="perder">Pérdida de grasa · déficit 20 a 30 %</option>
+          <option value="ganar">Ganancia de masa muscular · superávit 10 a 20 %</option>
+        </select></div>
+      </div>
+      <div class="field"><label for="en-ec">Ecuación para el gasto basal</label>
+        <div class="inp"><select id="en-ec" name="ecuacion">
+          <option value="mifflin">Mifflin-St Jeor</option>
+          <option value="harris">Harris-Benedict revisada</option>
+          <option value="fao">FAO/OMS/UNU</option>
+          <option value="cunningham">Cunningham (requiere % de grasa)</option>
+          <option value="katch">Katch-McArdle (requiere % de grasa)</option>
+        </select></div>
+      </div>
+      <div class="field addg"><label for="en-cod">Código o nombre <span class="hint">(para el informe)</span></label><div class="inp"><input id="en-cod" name="codigo" autocomplete="off" placeholder="Ej.: Est. 01"></div></div>
+      <div class="form-actions"><button type="button" class="btn btn-quiet" data-clear>Limpiar</button></div><p class="note" data-add-msg hidden></p>
+    </form>
+    <div class="results" id="r-energia" aria-live="polite"></div>
+  </div>
+</section>
+
 <!-- ================= GRUPO ================= -->
 <section class="view" id="v-grupo" hidden>
   <div class="wrap about" style="max-width:1080px">
@@ -558,6 +622,7 @@ html.rp-open main,html.rp-open .topbar{display:none!important}
         <li><b>Adultos:</b> separa la obesidad en grados I, II y III, muestra el rango de peso normal para la talla y evalúa la cintura (OMS 2008) y el índice cintura/talla.</li>
         <li><b>Composición corporal:</b> % de grasa por pliegues con Slaughter (niños y adolescentes) y Durnin y Womersley con Siri (adultos), con masa grasa y masa libre de grasa.</li>
         <li><b>Brazo (Frisancho 1981):</b> circunferencia de brazo, circunferencia muscular braquial, área muscular (AMB) y área grasa (AGB) del brazo con su percentil, de 1 a 74,9 años, en niños, adultos y personas mayores.</li>
+        <li><b>Requerimiento energético:</b> gasto basal con Mifflin-St Jeor, Harris-Benedict revisada, FAO/OMS/UNU, Cunningham o Katch-McArdle; factor de actividad según FAO/OMS/UNU 2004, IOM 2005 o factores clásicos, cada uno con su descripción, y calorías según el objetivo.</li>
         <li><b>Evaluación grupal:</b> agrega personas desde cada módulo o importa una planilla, revisa la distribución por categoría y exporta los resultados a Excel (CSV) o cópialos a una planilla.</li>
         <li><b>Personas mayores:</b> agrega el rango de peso normal para la talla.</li>
       </ul>
@@ -589,6 +654,15 @@ html.rp-open main,html.rp-open .topbar{display:none!important}
         <li>Frisancho AR. New norms of upper limb fat and muscle areas for assessment of nutritional status. Am J Clin Nutr. 1981;34(11):2540-5.</li>
         <li>Frisancho AR. Anthropometric standards for the assessment of growth and nutritional status. Ann Arbor: University of Michigan Press; 1990.</li>
         <li>Heymsfield SB, McManus C, Smith J, Stevens V, Nixon DW. Anthropometric measurement of muscle mass: revised equations for calculating bone-free arm muscle area. Am J Clin Nutr. 1982;36(4):680-90.</li>
+        <li>Mifflin MD, St Jeor ST, Hill LA, Scott BJ, Daugherty SA, Koh YO. A new predictive equation for resting energy expenditure in healthy individuals. Am J Clin Nutr. 1990;51(2):241-7.</li>
+        <li>Roza AM, Shizgal HM. The Harris Benedict equation reevaluated: resting energy requirements and the body cell mass. Am J Clin Nutr. 1984;40(1):168-82.</li>
+        <li>FAO/OMS/UNU. Necesidades de energía y de proteínas. Serie de Informes Técnicos 724. Ginebra: OMS; 1985.</li>
+        <li>Cunningham JJ. A reanalysis of the factors influencing basal metabolic rate in normal adults. Am J Clin Nutr. 1980;33(11):2372-4.</li>
+        <li>FAO/WHO/UNU. Human energy requirements: report of a joint FAO/WHO/UNU expert consultation. Food and Nutrition Technical Report Series 1. Roma: FAO; 2004.</li>
+        <li>Institute of Medicine. Dietary Reference Intakes for energy, carbohydrate, fiber, fat, fatty acids, cholesterol, protein, and amino acids. Washington DC: National Academies Press; 2005.</li>
+        <li>Aragon AA, Schoenfeld BJ, Wildman R, Kleiner S, VanDusseldorp T, Taylor L, et al. International Society of Sports Nutrition position stand: diets and body composition. J Int Soc Sports Nutr. 2017;14:16.</li>
+        <li>Helms ER, Aragon AA, Fitschen PJ. Evidence-based recommendations for natural bodybuilding contest preparation: nutrition and supplementation. J Int Soc Sports Nutr. 2014;11:20.</li>
+        <li>Iraki J, Fitschen P, Espinar S, Helms E. Nutrition recommendations for bodybuilders in the off-season: a narrative review. Sports. 2019;7(7):154.</li>
         <li>Fernández JR, Redden DT, Pietrobelli A, Allison DB. Waist circumference percentiles in nationally representative samples of African-American, European-American, and Mexican-American children and adolescents. J Pediatr. 2004;145(4):439-44.</li>
         <li>Atalah E, Castillo C, Castro R, Aldea A. Propuesta de un nuevo estándar de evaluación nutricional en embarazadas. Rev Med Chile. 1997;125(12):1429-36.</li>
         <li>Ministerio de Salud de Chile. Nutrición y alimentación en la gestante: revisión de las curvas de Atalah. Gráfico para la evaluación nutricional de la gestante según IMC y edad gestacional 2018-2019. Santiago: MINSAL; 2019.</li>
@@ -1043,6 +1117,82 @@ html.rp-open main,html.rp-open .topbar{display:none!important}
     return o;
   }
 
+  // ---------- requerimiento energético (adultos) ----------
+  var ECUACIONES = {
+    mifflin: { nombre: "Mifflin-St Jeor (1990)", f: function (s, p, t, e) { return 10 * p + 6.25 * t - 5 * e + (s === "F" ? -161 : 5); } },
+    harris: { nombre: "Harris-Benedict revisada (Roza y Shizgal, 1984)", f: function (s, p, t, e) { return s === "F" ? 447.593 + 9.247 * p + 3.098 * t - 4.330 * e : 88.362 + 13.397 * p + 4.799 * t - 5.677 * e; } },
+    fao: { nombre: "FAO/OMS/UNU (1985)", f: function (s, p, t, e) {
+      var c = s === "F" ? [[30, 14.7, 496], [60, 8.7, 829], [999, 10.5, 596]] : [[30, 15.3, 679], [60, 11.6, 879], [999, 13.5, 487]];
+      for (var i = 0; i < c.length; i++) if (e < c[i][0]) return c[i][1] * p + c[i][2];
+      return c[2][1] * p + c[2][2];
+    } },
+    cunningham: { nombre: "Cunningham (1980)", mlg: true, f: function (s, p, t, e, mlg) { return 500 + 22 * mlg; } },
+    katch: { nombre: "Katch-McArdle", mlg: true, f: function (s, p, t, e, mlg) { return 370 + 21.6 * mlg; } }
+  };
+  // Factores de actividad por referencia: [factor, nombre, rango NAF, descripción]
+  var PAL = {
+    fao: { nombre: "FAO/OMS/UNU 2004", cats: [
+      [1.55, "Sedentario o estilo de vida ligero", "NAF 1,40 a 1,69", "Trabajo sentado o con poco movimiento, traslados en vehículo y poca o ninguna actividad física en el tiempo libre."],
+      [1.85, "Activo o moderadamente activo", "NAF 1,70 a 1,99", "Trabajo sedentario más cerca de 1 hora diaria de actividad moderada a vigorosa (por ejemplo, trotar o andar en bicicleta), o un trabajo que exige moverse la mayor parte del día."],
+      [2.2, "Vigoroso o muy activo", "NAF 2,00 a 2,40", "Trabajo físico pesado (agrícola, construcción, carga) o 2 horas o más diarias de actividad vigorosa, como el entrenamiento de un deportista."]] },
+    iom: { nombre: "IOM 2005 (Dietary Reference Intakes)", cats: [
+      [1.2, "Sedentario", "NAF 1,0 a 1,39", "Solo las actividades de la vida diaria: tareas del hogar, caminar hasta el bus o el auto, trabajo de oficina."],
+      [1.5, "Poco activo", "NAF 1,4 a 1,59", "Actividades de la vida diaria más 30 a 60 minutos al día de actividad moderada, como caminar a 5 a 7 km/h."],
+      [1.75, "Activo", "NAF 1,6 a 1,89", "Actividades de la vida diaria más 60 minutos o más al día de actividad moderada."],
+      [2.2, "Muy activo", "NAF 1,9 a 2,49", "Actividades de la vida diaria más 60 minutos diarios de actividad moderada y 60 minutos de actividad vigorosa, o 120 minutos de actividad moderada."]] },
+    clasico: { nombre: "Factores clásicos (1,2 a 1,9)", cats: [
+      [1.2, "Sedentario", "FA 1,2", "Poco o ningún ejercicio; trabajo sentado."],
+      [1.375, "Ligeramente activo", "FA 1,375", "Ejercicio o deporte liviano 1 a 3 días por semana."],
+      [1.55, "Moderadamente activo", "FA 1,55", "Ejercicio o deporte moderado 3 a 5 días por semana."],
+      [1.725, "Muy activo", "FA 1,725", "Ejercicio o deporte intenso 6 a 7 días por semana."],
+      [1.9, "Extremadamente activo", "FA 1,9", "Entrenamiento intenso dos veces al día, competencia o trabajo físico muy pesado."]] }
+  };
+  // Ecuaciones EER del IOM 2005 (adultos de 19 años o más): gasto total directo según categoría de actividad
+  var IOM_PA = { M: [1.00, 1.11, 1.25, 1.48], F: [1.00, 1.12, 1.27, 1.45] };
+  function eerIOM(s, edad, peso, tallaCm, cat) {
+    var pa = IOM_PA[s][cat], h = tallaCm / 100;
+    return s === "F" ? 354 - 6.91 * edad + pa * (9.36 * peso + 726 * h) : 662 - 9.53 * edad + pa * (15.91 * peso + 539.6 * h);
+  }
+  var OBJETIVOS = { mantener: { nombre: "Mantener el peso", rango: [0, 0] }, perder: { nombre: "Pérdida de grasa", rango: [-30, -20] }, ganar: { nombre: "Ganancia de masa muscular", rango: [10, 20] } };
+  function evaluarEnergia(inp) {
+    var out = { errors: [], warnings: [] };
+    var sx = inp.sexo === "F" ? "F" : "M", edad = parseNum(inp.edad), peso = parseNum(inp.peso), talla = parseNum(inp.talla), gc = parseNum(inp.grasa);
+    if (!(edad > 0)) out.errors.push("Ingresa la edad.");
+    else if (edad < 18) out.errors.push("Este cálculo es para personas de 18 años o más.");
+    if (!(peso > 0)) out.errors.push("Ingresa el peso en kilos.");
+    if (!(talla > 0)) out.errors.push("Ingresa la talla en centímetros.");
+    var ref = PAL[inp.refact] ? inp.refact : "fao", cats = PAL[ref].cats, ci = parseInt(inp.actividad, 10);
+    if (inp.actividad !== "otro" && !(ci >= 0 && ci < cats.length)) ci = 0;
+    var pal = inp.actividad === "otro" ? parseNum(inp.factor) : cats[ci][0];
+    out.ref = ref; out.cat = inp.actividad === "otro" ? null : cats[ci];
+    if (!(pal >= 1 && pal <= 2.6)) out.errors.push("El factor de actividad debe estar entre 1,0 y 2,6.");
+    if (out.errors.length) return out;
+    var mlg = gc > 0 && gc < 70 ? peso * (1 - gc / 100) : null;
+    out.mlg = mlg; out.pal = pal; out.sexo = sx;
+    out.tabla = Object.keys(ECUACIONES).map(function (k) {
+      var q = ECUACIONES[k];
+      if (q.mlg && !mlg) return { key: k, nombre: q.nombre, geb: null };
+      var geb = q.f(sx, peso, talla, edad, mlg);
+      return { key: k, nombre: q.nombre, geb: geb, get: geb * pal };
+    });
+    var key = inp.ecuacion && ECUACIONES[inp.ecuacion] ? inp.ecuacion : "mifflin";
+    var sel = out.tabla.filter(function (r) { return r.key === key; })[0];
+    if (!sel.geb) { out.warnings.push(ECUACIONES[key].nombre + " requiere el % de grasa corporal; se usó Mifflin-St Jeor."); key = "mifflin"; sel = out.tabla[0]; }
+    out.ecuacion = key; out.geb = sel.geb; out.get = sel.get;
+    if (ref === "iom" && inp.actividad !== "otro" && edad >= 19) out.eer = eerIOM(sx, edad, peso, talla, ci);
+    var obj = OBJETIVOS[inp.objetivo] ? inp.objetivo : "mantener", o = OBJETIVOS[obj];
+    out.objetivo = obj; out.objetivoNombre = o.nombre; out.pct = o.rango;
+    out.meta = [out.get * (1 + o.rango[0] / 100), out.get * (1 + o.rango[1] / 100)];
+    // cambio semanal aproximado (7700 kcal por kg; estimación inicial que sobrestima el cambio a mediano plazo)
+    out.semanal = o.rango.map(function (p) { var kg = out.get * p / 100 * 7 / 7700; return { kg: kg, pct: kg / peso * 100 }; });
+    if (obj === "perder") {
+      if (Math.abs(out.semanal[0].pct) > 1) out.warnings.push("Con un déficit de 30 % la pérdida estimada supera el 1 % del peso por semana; en personas magras conviene acercarse al 20 % o menos.");
+      if (out.meta[0] < out.geb) out.warnings.push("Con un déficit de 30 % el aporte queda por debajo del gasto energético basal estimado (" + fmt(out.geb, 0) + " kcal).");
+    }
+    if (obj === "ganar" && out.semanal[1].pct > 0.5) out.warnings.push("Con un superávit de 20 % la ganancia estimada supera el 0,5 % del peso por semana; en personas entrenadas conviene usar el extremo inferior (10 %).");
+    return out;
+  }
+
   // ---------- formato es-CL ----------
   function fmt(x, n) {
     if (x === null || x === undefined || isNaN(x)) return "–";
@@ -1054,6 +1204,7 @@ html.rp-open main,html.rp-open .topbar{display:none!important}
   root.ENUTA = {
     setData: setData, parseNum: parseNum, round: round, zLMS: zLMS, zAdjusted: zAdjusted, valueAtZ: valueAtZ,
     ageYMD: ageYMD, minsalMonths: minsalMonths, parseDate: parseDate,
+    evaluarEnergia: evaluarEnergia, PAL: PAL, ECUACIONES: ECUACIONES,
     setFrisancho: setFrisancho, frisancho: frisancho, PCTS: PCTS,
     slaughter: slaughter, durnin: durnin, GRASA_LABEL: GRASA_LABEL,
     evaluarNino: evaluarNino, CINTURA: CINTURA, CINTURA_LABEL: CINTURA_LABEL, evaluarGestante: evaluarGestante, evaluarAdulto: evaluarAdulto,
@@ -1492,7 +1643,7 @@ ENUTA.setFrisancho({"CB":{"M":[[142,146,150,159,170,176,183],[141,145,153,162,17
   });
 
   /* ---------- navegación por #hash ---------- */
-  var VIEWS = { "": "v-home", "ninos": "v-ninos", "embarazadas": "v-embarazadas", "adultos": "v-adultos", "adulto-mayor": "v-adulto-mayor", "acerca": "v-acerca", "grupo": "v-grupo" };
+  var VIEWS = { "": "v-home", "ninos": "v-ninos", "embarazadas": "v-embarazadas", "adultos": "v-adultos", "adulto-mayor": "v-adulto-mayor", "acerca": "v-acerca", "grupo": "v-grupo", "energia": "v-energia" };
   function route() {
     var h = (location.hash || "").replace(/^#/, "");
     var id = VIEWS[h] || "v-home";
@@ -1745,6 +1896,109 @@ ENUTA.setFrisancho({"CB":{"M":[[142,146,150,159,170,176,183],[141,145,153,162,17
   updateBadge();
 })();
 
+/* App Evaluación Nutricional · módulo de requerimiento energético */
+(function () {
+  "use strict";
+  var E = window.ENUTA, fmt = E.fmt;
+  function $(s, r) { return (r || document).querySelector(s); }
+  function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function cv(t) { return "var(" + t + ")"; }
+  function formData(form) {
+    var o = {};
+    Array.prototype.forEach.call(form.querySelectorAll("input,select"), function (i) {
+      if (i.type === "radio") { if (i.checked) o[i.name] = i.value; }
+      else if (i.type === "checkbox") o[i.name] = i.checked;
+      else o[i.name] = i.value;
+    });
+    return o;
+  }
+  var COPY_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>';
+  var DOC_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>';
+
+  function render() {
+    var f = $("#f-energia"), box = $("#r-energia"), d = formData(f);
+    syncActividad(d);
+    $("#en-factor-f").hidden = d.actividad !== "otro";
+    var r = E.evaluarEnergia(d);
+    if (r.errors.length) { box.innerHTML = '<div class="errors">' + r.errors.map(function (e) { return "<p>" + esc(e) + "</p>"; }).join("") + "</div>"; return; }
+    var a = Math.round(Math.min(r.meta[0], r.meta[1])), b = Math.round(Math.max(r.meta[0], r.meta[1]));
+    var metaTxt = a === b ? fmt(a, 0) : fmt(a, 0) + " a " + fmt(b, 0);
+    var objC = { mantener: "--s-normal", perder: "--s-riesgo", ganar: "--s-sobre" }[r.objetivo];
+    var eqCorta = E.ECUACIONES[r.ecuacion].nombre.split(" (")[0];
+    var h = '<div class="card verdict"><div class="verdict-grid">';
+    h += '<div><p class="vlabel">Objetivo · ' + esc(r.objetivoNombre) + '</p><p class="big num" style="font-size:clamp(1.9rem,6vw,2.6rem);color:' + cv(objC) + '">' + metaTxt + '<small>kcal/día</small></p><p class="vsub">' +
+      (r.objetivo === "mantener" ? "Igual al gasto energético total." : r.objetivo === "perder" ? "Déficit de 20 a 30 % sobre el gasto energético total." : "Superávit de 10 a 20 % sobre el gasto energético total.") + "</p></div>";
+    h += '<div class="kv"><div><span>Gasto basal · ' + esc(eqCorta) + '</span><b class="num">' + fmt(r.geb, 0) + ' kcal</b></div><div><span>Factor de actividad</span><b class="num">× ' + fmt(r.pal, 2) + '</b></div><div><span>Gasto energético total</span><b class="num">' + fmt(r.get, 0) + " kcal/día</b></div>" +
+      (r.mlg ? '<div><span>Masa libre de grasa</span><b class="num">' + fmt(r.mlg, 1) + " kg</b></div>" : "") + "</div></div>";
+    if (r.objetivo !== "mantener") {
+      var s = r.semanal.map(function (x) { return { kg: Math.abs(x.kg), pct: Math.abs(x.pct) }; }).sort(function (x, y) { return x.kg - y.kg; });
+      h += '<p class="vsub">Cambio de peso estimado: <b style="color:' + cv(objC) + '">' + fmt(s[0].kg, 2) + " a " + fmt(s[1].kg, 2) + " kg por semana</b> (" + fmt(s[0].pct, 2) + " a " + fmt(s[1].pct, 2) + " % del peso). Referencia: " +
+        (r.objetivo === "perder" ? "0,5 a 1 % del peso por semana (Helms y cols., 2014)." : "0,25 a 0,5 % del peso por semana (Iraki y cols., 2019).") + "</p>";
+    }
+    h += "</div>";
+    h += '<div class="card section-pad"><h3>Gasto basal según ecuación</h3><div class="tbl-wrap"><table class="reft"><thead><tr><th scope="col" style="text-align:left">Ecuación</th><th scope="col">Basal (kcal)</th><th scope="col">Total (× ' + fmt(r.pal, 2) + ")</th></tr></thead><tbody>";
+    r.tabla.forEach(function (t) {
+      var on = t.key === r.ecuacion;
+      h += '<tr><th scope="row" style="text-align:left;white-space:normal;color:var(--ink);font-weight:' + (on ? 800 : 400) + '">' + esc(t.nombre) + (on ? " ✓" : "") + '</th><td class="num' + (on ? " hl" : "") + '">' + (t.geb ? fmt(t.geb, 0) : "requiere % grasa") + '</td><td class="num' + (on ? " hl" : "") + '">' + (t.get ? fmt(t.get, 0) : "–") + "</td></tr>";
+    });
+    if (r.eer) h += '<tr><th scope="row" style="text-align:left;white-space:normal;color:var(--ink);font-weight:400">Ecuación EER del IOM 2005 (gasto total directo, ' + esc(r.cat[1].toLowerCase()) + ')</th><td class="num">–</td><td class="num">' + fmt(r.eer, 0) + "</td></tr>";
+    h += '</tbody></table></div><p class="note">' + (r.cat ? "Factor de actividad: " + esc(E.PAL[r.ref].nombre) + ", categoría «" + esc(r.cat[1]) + "» (" + esc(r.cat[2]) + "). " : "Factor de actividad ingresado manualmente. ") + "El cambio semanal se estima con ~7.700 kcal por kg: es un punto de partida que sobrestima el cambio a mediano plazo por la adaptación metabólica; ajusta según la evolución del peso y la composición corporal. La posición del ISSN (Aragon y cols., 2017) recomienda déficits más conservadores cuanto más magra es la persona y superávits menores en personas entrenadas.</p></div>";
+    if (r.warnings.length) h += '<div class="card warns">' + r.warnings.map(function (w) { return "<p>" + esc(w) + "</p>"; }).join("") + "</div>";
+    h += '<div class="card section-pad"><div class="copyrow"><button type="button" class="btn btn-primary" data-copy="cp-energia">' + COPY_SVG + 'Copiar resumen</button><button type="button" class="btn btn-quiet" data-report="energia">' + DOC_SVG + 'Informe PDF</button><span class="copied" hidden>Resumen copiado</span></div><textarea id="cp-energia" hidden readonly></textarea></div>';
+    box.innerHTML = h;
+    $("#cp-energia").value = ["Evaluación Nutricional · Requerimiento energético",
+      (r.sexo === "F" ? "Mujer" : "Hombre") + ", " + d.edad + " años; peso " + fmt(E.parseNum(d.peso), 1) + " kg; talla " + fmt(E.parseNum(d.talla), 1) + " cm" + (r.mlg ? "; masa libre de grasa " + fmt(r.mlg, 1) + " kg" : "") + ".",
+      "Gasto basal, " + E.ECUACIONES[r.ecuacion].nombre + ": " + fmt(r.geb, 0) + " kcal. Factor de actividad " + fmt(r.pal, 2) + (r.cat ? " (" + E.PAL[r.ref].nombre + ", " + r.cat[1].toLowerCase() + ")" : "") + ". Gasto energético total: " + fmt(r.get, 0) + " kcal/día.",
+      "Objetivo, " + r.objetivoNombre.toLowerCase() + ": " + metaTxt + " kcal/día."].join("\n");
+  }
+
+  var refActual = null;
+  function syncActividad(d) {
+    var sel = $("#en-act"), ref = E.PAL[d.refact] ? d.refact : "fao", cats = E.PAL[ref].cats;
+    if (ref !== refActual) {
+      var prev = sel.value;
+      sel.innerHTML = cats.map(function (c, i) { return '<option value="' + i + '">' + esc(c[1]) + " · " + esc(c[2]) + "</option>"; }).join("") + '<option value="otro">Otro factor de actividad</option>';
+      sel.value = prev === "otro" ? "otro" : (cats[+prev] ? prev : "0");
+      d.actividad = sel.value; refActual = ref;
+    }
+    var c = cats[+sel.value], box = $("#en-act-desc");
+    box.innerHTML = sel.value === "otro" ? "Ingresa el factor que usarás (entre 1,0 y 2,6)." : "<b>" + esc(c[1]) + "</b> (" + esc(c[2]) + (ref === "clasico" ? "" : "; se usa " + fmt(c[0], 2)) + "): " + esc(c[3]);
+  }
+  var f = $("#f-energia"), badge = f.querySelector("[data-example]"), last = null;
+  var EJEMPLO = { sexo: "M", edad: "30", peso: "75,0", talla: "175", grasa: "", refact: "fao", actividad: "1", factor: "", objetivo: "perder", ecuacion: "mifflin", codigo: "" };
+  function fill(v) {
+    var rs = f.querySelector('[name="refact"]'); rs.value = v.refact || "fao"; refActual = null; syncActividad({ refact: rs.value });
+    Array.prototype.forEach.call(f.querySelectorAll("input,select"), function (i) {
+      var x = v[i.name];
+      if (i.type === "radio") i.checked = i.value === x;
+      else if (i.tagName === "SELECT") { if (x) i.value = x; else i.selectedIndex = 0; }
+      else i.value = x == null ? "" : x;
+    });
+  }
+  function onChange(e) { if (e && e.isTrusted && badge) badge.hidden = true; var k = JSON.stringify(formData(f)); if (k === last) return; last = k; render(); }
+  fill(EJEMPLO);
+  f.addEventListener("input", onChange);
+  f.addEventListener("change", onChange);
+  f.addEventListener("submit", function (e) { e.preventDefault(); });
+  f.querySelector("[data-clear]").addEventListener("click", function () { fill({ sexo: "M" }); if (badge) badge.hidden = true; last = null; render(); $("#en-edad").focus(); });
+  $("#en-import").addEventListener("click", function () {
+    var a = formData($("#f-adultos"));
+    var v = formData(f);
+    ["edad", "peso", "talla", "codigo"].forEach(function (k) { if (a[k]) v[k] = a[k]; });
+    v.sexo = a.sexo === "F" ? "F" : "M";
+    var pl = ["bicipital", "tricipital", "subescapular", "suprailiaco"].map(function (k) { return E.parseNum(a[k]); });
+    if (pl.every(function (x) { return x > 0; }) && E.parseNum(a.edad) > 0) {
+      var dw = E.durnin(v.sexo, E.parseNum(a.edad), pl[0], pl[1], pl[2], pl[3], E.parseNum(a.peso));
+      if (!dw.error) v.grasa = fmt(dw.grasa, 1);
+    }
+    fill(v); if (badge) badge.hidden = true; last = null; render();
+    var m = f.querySelector("[data-add-msg]");
+    m.textContent = a.peso ? "Datos copiados del módulo Adultos" + (v.grasa ? ", con el % de grasa de Durnin y Womersley." : ".") : "El módulo Adultos no tiene datos todavía.";
+    m.style.color = a.peso ? "var(--s-normal)" : "var(--s-obes)"; m.hidden = false;
+  });
+  render();
+})();
+
 /* App Evaluación Nutricional · informe imprimible / PDF */
 (function () {
   "use strict";
@@ -1752,13 +2006,14 @@ ENUTA.setFrisancho({"CB":{"M":[[142,146,150,159,170,176,183],[141,145,153,162,17
     ninos: { form: "f-ninos", res: "r-ninos", titulo: "Niños, niñas y adolescentes", ref: "Patrones de crecimiento MINSAL 2018 (OMS 2006/2007)." },
     emb: { form: "f-emb", res: "r-emb", titulo: "Gestantes", ref: "Curva de Atalah modificada, MINSAL 2019; incremento de peso según estado pregestacional (MINSAL)." },
     adultos: { form: "f-adultos", res: "r-adultos", titulo: "Adultos", ref: "IMC OMS; cintura OMS 2008; Frisancho 1981; Durnin y Womersley 1974 con Siri 1961; Gallagher 2000." },
+    energia: { form: "f-energia", res: "r-energia", titulo: "Requerimiento energético", ref: "Mifflin-St Jeor 1990; Roza y Shizgal 1984; FAO/OMS/UNU 1985 y 2004; IOM 2005; Cunningham 1980; Katch-McArdle; Aragon y cols. 2017 (ISSN); Helms y cols. 2014; Iraki y cols. 2019." },
     mayor: { form: "f-mayor", res: "r-mayor", titulo: "Personas mayores", ref: "IMC MINSAL (EMPAM); Frisancho 1981." }
   };
   var LBL = { sexo: "Sexo", nacimiento: "Fecha de nacimiento", evaluacion: "Fecha de evaluación", semanas: "Semanas de gestación", edad: "Edad (años)",
     peso: "Peso (kg)", talla: "Talla (cm)", pesoPre: "Peso pregestacional (kg)", multiple: "Embarazo múltiple", posicion: "Posición de medición",
     eg: "Edad gestacional al nacer (sem)", pce: "Perímetro cefálico (cm)", cintura: "Cintura (cm)", cb: "Circunferencia de brazo (cm)",
     bicipital: "Pliegue bicipital (mm)", tricipital: "Pliegue tricipital (mm)", subescapular: "Pliegue subescapular (mm)", suprailiaco: "Pliegue suprailíaco (mm)",
-    pantorrilla: "Pliegue pantorrilla (mm)", maduracion: "Maduración sexual" };
+    pantorrilla: "Pliegue pantorrilla (mm)", maduracion: "Maduración sexual", grasa: "% de grasa corporal", refact: "Referencia del factor de actividad", actividad: "Nivel de actividad", factor: "Factor de actividad", objetivo: "Objetivo", ecuacion: "Ecuación del gasto basal" };
   function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
   function fecha(iso) { var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || ""); return m ? m[3] + "-" + m[2] + "-" + m[1] : iso; }
   function hoy() { var d = new Date(); return String(d.getDate()).padStart(2, "0") + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + d.getFullYear(); }
@@ -1778,6 +2033,10 @@ ENUTA.setFrisancho({"CB":{"M":[[142,146,150,159,170,176,183],[141,145,153,162,17
       if (v === "" || v == null) return;
       if (k === "sexo") v = v === "F" ? "Femenino" : "Masculino";
       else if (k === "nacimiento" || k === "evaluacion") v = fecha(v);
+      else if (k === "actividad") { var P = window.ENUTA.PAL[d.refact] || window.ENUTA.PAL.fao, c = P.cats[+v]; v = v === "otro" ? "Otro factor" : c ? c[1] + " (" + c[2] + ")" : v; }
+      else if (k === "refact") v = (window.ENUTA.PAL[v] || {}).nombre || v;
+      else if (k === "objetivo") v = { mantener: "Mantener el peso", perder: "Pérdida de grasa", ganar: "Ganancia de masa muscular" }[v] || v;
+      else if (k === "ecuacion") v = { mifflin: "Mifflin-St Jeor", harris: "Harris-Benedict revisada", fao: "FAO/OMS/UNU", cunningham: "Cunningham", katch: "Katch-McArdle" }[v] || v;
       else if (k === "posicion") v = { auto: "Según la edad", acostado: "Acostado (longitud)", pie: "De pie (estatura)" }[v] || v;
       else if (k === "maduracion") { if (!d.tricipital || d.sexo === "F") return; v = { pre: "Prepúber", pub: "Púber", post: "Pospúber" }[v] || v; }
       rows.push([LBL[k], v]);
