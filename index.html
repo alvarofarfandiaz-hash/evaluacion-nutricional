@@ -801,7 +801,7 @@ html.rp-open main,html.rp-open .topbar{display:none!important}
         <li><b>Adultos:</b> separa la obesidad en grados I, II y III, muestra el rango de peso normal para la talla y evalúa la cintura (OMS 2008) y el índice cintura/talla.</li>
         <li><b>Composición corporal:</b> % de grasa por pliegues con Slaughter (niños y adolescentes) y Durnin y Womersley con Siri (adultos), con masa grasa y masa libre de grasa.</li>
         <li><b>Brazo (Frisancho 1981):</b> circunferencia de brazo, circunferencia muscular braquial, área muscular (AMB) y área grasa (AGB) del brazo con su percentil, de 1 a 74,9 años, en niños, adultos y personas mayores.</li>
-        <li><b>Recién nacidos y prematuros:</b> fechas de nacimiento y evaluación (o edad manual en semanas/días), más la edad gestacional al nacer en un único formulario; antes de 40 semanas de edad posmenstrual usa Alarcón–Pittaluga y desde 40 semanas aplica OMS con edad corregida. Al nacimiento clasifica PEG, AEG, GEG y RCIU (bajo p3).</li>
+        <li><b>Recién nacidos y prematuros:</b> fechas de nacimiento y evaluación (o edad manual en semanas/días), más la edad gestacional al nacer en un único formulario; antes de 40 semanas cumplidas (EG + edad cronológica, o edad posmenstrual) usa Alarcón–Pittaluga y desde 40 semanas aplica OMS con edad corregida. Al nacimiento clasifica PEG, AEG, GEG y RCIU (bajo p3).</li>
         <li><b>Síndrome de Down y parálisis cerebral (NANEAS):</b> en síndrome de Down, T/E, P/E y perímetro cefálico con Zemel 2015 en percentiles y calificación nutricional con la OMS, según la Norma Técnica MINSAL 2022 (incluida la regla del menor de 1 año y las banderas rojas). En parálisis cerebral, P/E, T/E e IMC/E con las gráficas de Brooks 2011 por sexo y nivel GMFCS, zona roja de riesgo nutricional y talla estimada con las ecuaciones de Stevenson.</li>
         <li><b>Requerimiento energético:</b> gasto basal con Mifflin-St Jeor, Harris-Benedict revisada, FAO/OMS/UNU, Cunningham o Katch-McArdle; factor de actividad según FAO/OMS/UNU 2004, IOM 2005 o factores clásicos, cada uno con su descripción, y calorías según el objetivo.</li>
         <li><b>Evaluación grupal:</b> agrega personas desde cada módulo o importa una planilla, revisa la distribución por categoría y exporta los resultados a Excel (CSV) o cópialos a una planilla.</li>
@@ -1076,7 +1076,7 @@ html.rp-open main,html.rp-open .topbar{display:none!important}
       out.edadPosmenstrual = prem.edadPosmenstrualSem + "+" + prem.edadPosmenstrualDiasExtra + " semanas";
       out.categoriaPrematuro = prem.grupo;
       if (prem.status === "antes_40") {
-        out.errors.push("Edad posmenstrual " + out.edadPosmenstrual + ": aún no alcanza 40 semanas. No se aplican curvas OMS con edad negativa; para medidas al nacimiento utiliza Alarcón–Pittaluga.");
+        out.errors.push("Lleva " + out.edadPosmenstrual + " cumplidas (EG + edad cronológica): aún no alcanza 40 semanas. No se aplican curvas OMS con edad negativa; para medidas al nacimiento utiliza Alarcón–Pittaluga.");
         return out;
       }
       if (prem.corregida) out.edadCorregidaCalculada = prem.corregida;
@@ -2756,7 +2756,7 @@ ENUTA.NANEAS = {"zemel":{"inf":{"F":{"w":[[0.0,0.192,3.069,0.145],[1.0,0.131,3.6
         usableDays=chronoDays;switchedToChronological=true;
       }
     }
-    if(mode==="alarcon"&&(weeks<24||weeks>42))errs.push("Edad posmenstrual de "+weeks+" semanas fuera de las tablas Alarcón–Pittaluga disponibles (24–42 semanas).");
+    if(mode==="alarcon"&&(weeks<24||weeks>42))errs.push("Semanas cumplidas (EG + edad cronológica): "+weeks+" semanas fuera de las tablas Alarcón–Pittaluga disponibles (24–42 semanas).");
     if(usableDays>31*365)errs.push("Para edades mayores utiliza el módulo pediátrico general.");
     if(errs.length)return {errors:errs,mode:mode,chronoDays:chronoDays,correctedDays:correctedDays};
     var r={errors:[],warnings:warnings,mode:mode,chronoDays:chronoDays,correctedDays:correctedDays,pmaDays:pmaDays,
@@ -2772,10 +2772,10 @@ ENUTA.NANEAS = {"zemel":{"inf":{"F":{"w":[[0.0,0.192,3.069,0.145],[1.0,0.131,3.6
         var arr=table[weeks],low=arr[pp.indexOf(10)],high=arr[pp.indexOf(90)];
         inds.push({code:code,label:label,value:val,unit:unit,values:arr,percentiles:pp,cat:(pp[0]===3&&val<arr[0])?"< p3":val<low?"< p10":val>high?"> p90":"p10–p90"});
       }
-      push("P/EG","Peso/edad posmenstrual",w,"g",PESO,[3,10,25,50,75,90]);
-      push("L/EG","Longitud/edad posmenstrual",h,"cm",LONG,[10,50,90]);
-      push("PC/EG","Perímetro cefálico/edad posmenstrual",pc,"cm",CRANEO,[10,50,90]);
-      if(h>0)push("IP/EG","Índice ponderal/edad posmenstrual",100*w/Math.pow(h,3),"g × 100 / cm³",IP,[10,50,90]);
+      push("P/EG","Peso/semanas cumplidas",w,"g",PESO,[3,10,25,50,75,90]);
+      push("L/EG","Longitud/semanas cumplidas",h,"cm",LONG,[10,50,90]);
+      push("PC/EG","Perímetro cefálico/semanas cumplidas",pc,"cm",CRANEO,[10,50,90]);
+      if(h>0)push("IP/EG","Índice ponderal/semanas cumplidas",100*w/Math.pow(h,3),"g × 100 / cm³",IP,[10,50,90]);
       r.inds=inds;r.category=w<PESO[weeks][0]?"RCIU":w<PESO[weeks][1]?"PEG":w>PESO[weeks][5]?"GEG":"AEG";
     }else{
       // OMS utiliza la edad corregida cuando corresponde; la fecha probable de término
@@ -2801,7 +2801,7 @@ ENUTA.NANEAS = {"zemel":{"inf":{"F":{"w":[[0.0,0.192,3.069,0.145],[1.0,0.131,3.6
     focus.forEach(function(p,j){var i=idx[j],points=[];for(var k=24;k<=42;k++)points.push(x(k)+","+y(src[k][i]));h+='<polyline points="'+points.join(" ")+'" fill="none" stroke="'+cols[j]+'" stroke-width="2.6" stroke-linejoin="round"/><text x="568" y="'+(y(src[42][i])+3).toFixed(1)+'" style="fill:'+cols[j]+';font-weight:700">p'+p+'</text>';});
     h+='<line x1="'+x(r.pmaWeeks)+'" x2="'+x(r.pmaWeeks)+'" y1="32" y2="186" stroke="var(--ink)" stroke-opacity=".35" stroke-dasharray="4 4"/>';
     h+='<circle cx="'+x(r.pmaWeeks)+'" cy="'+y(ind.value)+'" r="6.5" fill="var(--brand)" stroke="var(--surface)" stroke-width="2.5"/>';
-    return h+'<text x="300" y="226" text-anchor="middle">Edad posmenstrual (semanas completas)</text></svg>';
+    return h+'<text x="300" y="226" text-anchor="middle">Semanas cumplidas (EG + edad cronológica)</text></svg>';
   }
   // Tablas y curvas OMS del mismo conjunto de datos LMS que usa el cálculo.
   // El gráfico es descriptivo; no modifica el resultado ni el criterio de clasificación.
@@ -2891,14 +2891,14 @@ ENUTA.NANEAS = {"zemel":{"inf":{"F":{"w":[[0.0,0.192,3.069,0.145],[1.0,0.131,3.6
       '<span>Edad cronológica: <b>'+esc(ageLabel(r.chronoDays,r.chronoAge))+'</b></span>'+
       '<span>Semanas por corregir: <b>'+Math.floor(r.correctionDays/7)+' sem + '+(r.correctionDays%7)+' días</b></span>'+
       '<span>Edad gestacional al nacimiento: <b>'+r.egBirthWeeks+'+'+r.egBirthExtra+' sem</b></span>'+
-      '<span>Edad posmenstrual: <b>'+r.pmaWeeks+'+'+r.pmaExtraDays+' sem</b></span>'+
+      '<span>Semanas cumplidas (EG + edad cronológica): <b>'+r.pmaWeeks+'+'+r.pmaExtraDays+' sem</b> <span class="hint">(edad posmenstrual)</span></span>'+
       '<span>Edad corregida: <b>'+esc(ageLabel(r.correctedDays,r.correctedAge))+'</b></span></div></div>';
     var h=age;
     if(r.mode==="alarcon"){
-      h+='<div class="neo-switch"><strong>Referencia automática: Alarcón–Pittaluga · '+r.pmaWeeks+' semanas</strong>'+(r.isBirth?'Evaluación al nacimiento con la curva intrauterina nacional (SOCHIPE 2010 / MINSAL 2021).':'Antes de completar 40 semanas de edad posmenstrual. Se grafican las medidas actuales con la referencia intrauterina nacional (SOCHIPE 2010 / MINSAL 2021).')+'</div>';
+      h+='<div class="neo-switch"><strong>Referencia automática: Alarcón–Pittaluga · '+r.pmaWeeks+' semanas</strong>'+(r.isBirth?'Evaluación al nacimiento con la curva intrauterina nacional (SOCHIPE 2010 / MINSAL 2021).':'Aún no cumple 40 semanas (EG + edad cronológica). Se grafican las medidas actuales con la referencia intrauterina nacional (SOCHIPE 2010 / MINSAL 2021).')+'</div>';
       var label=r.isBirth?{RCIU:"PEG con RCIU · bajo p3",PEG:"PEG · pequeño para EG",AEG:"AEG · adecuado para EG",GEG:"GEG · grande para EG"}[r.category]:
         (r.category==="RCIU"?"Peso bajo p3":r.category==="PEG"?"Peso bajo p10":r.category==="GEG"?"Peso sobre p90":"Peso entre p10 y p90");
-      h+='<div class="card verdict"><p class="vlabel">'+(r.isBirth?"Clasificación peso/EG al nacimiento":"Comparación peso/edad posmenstrual")+'</p><p class="neo-big">'+esc(label)+'</p><p class="note">'+(r.isBirth?'PEG/AEG/GEG se reserva para clasificación al nacimiento.':'En controles posteriores al nacimiento se describe la posición respecto de la curva, sin renombrar al niño como PEG/AEG/GEG.')+'</p></div>';
+      h+='<div class="card verdict"><p class="vlabel">'+(r.isBirth?"Clasificación peso/EG al nacimiento":"Comparación peso/semanas cumplidas")+'</p><p class="neo-big">'+esc(label)+'</p><p class="note">'+(r.isBirth?'PEG/AEG/GEG se reserva para clasificación al nacimiento.':'En controles posteriores al nacimiento se describe la posición respecto de la curva, sin renombrar al niño como PEG/AEG/GEG.')+'</p></div>';
       r.inds.forEach(function(ind){var color=(ind.cat==="< p10"||ind.cat==="< p3")?"--s-deficit":ind.cat==="> p90"?"--s-sobre":"--s-normal";
         h+='<article class="card section-pad"><div class="neo-ind-header"><div><h3>'+esc(ind.label)+'</h3><p class="note">'+esc(ind.code)+' · '+fmt(ind.value,ind.code==="P/EG"?0:ind.code==="IP/EG"?2:1)+' '+esc(ind.unit)+'</p></div><span class="chip" style="--c:var('+color+')">'+esc(ind.cat)+'</span></div>'+chart(ind,r)+
         '<div class="neo-scale">'+ind.values.map(function(v,i){return '<span>p'+ind.percentiles[i]+'<strong>'+fmt(v,ind.code==="P/EG"?1:ind.code==="IP/EG"?2:1)+'</strong></span>';}).join('')+'</div></article>';
@@ -2906,7 +2906,7 @@ ENUTA.NANEAS = {"zemel":{"inf":{"F":{"w":[[0.0,0.192,3.069,0.145],[1.0,0.131,3.6
       h+='<div class="card section-pad"><p class="note">Comparación antropométrica con la referencia intrauterina. En el seguimiento posnatal se requiere considerar la trayectoria de crecimiento y la evolución clínica, no solo una medición aislada.</p></div>';
     }else{
       var n=r.oms,L=r.sex==="F"?E.NUTRI_LABEL_F:E.NUTRI_LABEL;
-      h+='<div class="neo-switch"><strong>Referencia automática: OMS 2006 · mes '+r.omsMes+'</strong>Desde las 40 semanas de edad posmenstrual; '+(r.switchedToChronological?'se utiliza edad cronológica porque terminó el período de corrección.':'se utiliza edad corregida para clasificar.')+'</div>';
+      h+='<div class="neo-switch"><strong>Referencia automática: OMS 2006 · mes '+r.omsMes+'</strong>Desde las 40 semanas cumplidas (EG + edad cronológica); '+(r.switchedToChronological?'se utiliza edad cronológica porque terminó el período de corrección.':'se utiliza edad corregida para clasificar.')+'</div>';
       h+='<div class="card verdict"><div class="verdict-grid"><div><p class="vlabel">Clasificación nutricional OMS</p><p class="neo-big">'+esc(n.calificacion==null?"Sin clasificar":L[n.calificacion])+'</p><p class="vsub">'+esc(n.segun||"")+'</p></div><div><p class="vlabel">Edad utilizada para las curvas</p><p class="neo-big">'+esc(ageLabel(r.usedDays,r.usedAge))+'</p><p class="vsub">Mes OMS '+r.omsMes+'</p></div></div></div>';
       h+='<div class="ind-list">';
       var labels={"P/E":"Peso/edad","P/T":"Peso/longitud","T/E":"Longitud/edad","PCe/E":"Perímetro cefálico/edad","IMC/E":"IMC/edad"};
@@ -2924,7 +2924,7 @@ ENUTA.NANEAS = {"zemel":{"inf":{"F":{"w":[[0.0,0.192,3.069,0.145],[1.0,0.131,3.6
     var summ=['Evaluación nutricional neonatal y prematuros',
       'Edad cronológica: '+ageLabel(r.chronoDays,r.chronoAge),
       'Semanas por corregir: '+Math.floor(r.correctionDays/7)+' sem + '+r.correctionDays%7+' días',
-      'Edad posmenstrual: '+r.pmaWeeks+'+'+r.pmaExtraDays+' sem',
+      'Semanas cumplidas (EG + edad cronológica): '+r.pmaWeeks+'+'+r.pmaExtraDays+' sem',
       'Edad corregida: '+ageLabel(r.correctedDays,r.correctedAge),
       'Referencia: '+(r.mode==="alarcon"?'Alarcón–Pittaluga (SOCHIPE 2010)':'OMS 2006 (mes '+r.omsMes+')')];
     if(r.mode==="alarcon")r.inds.forEach(function(i){summ.push(i.label+': '+fmt(i.value,i.code==="P/EG"?0:1)+' '+i.unit+' ('+i.cat+').');});
@@ -2960,7 +2960,7 @@ ENUTA.NANEAS = {"zemel":{"inf":{"F":{"w":[[0.0,0.192,3.069,0.145],[1.0,0.131,3.6
 (function () {
   "use strict";
   var MOD = {
-    neonatal: { form: "f-neonatal", res: "r-neonatal", titulo: "Recién nacidos y prematuros", ref: "Alarcón–Pittaluga (Milad y cols., Rev Chil Pediatr 2010) antes de 40 semanas de edad posmenstrual y al nacimiento; OMS 2006 desde 40 semanas con edad corregida; MINSAL, Norma Técnica N.º 218 (2021)." },
+    neonatal: { form: "f-neonatal", res: "r-neonatal", titulo: "Recién nacidos y prematuros", ref: "Alarcón–Pittaluga (Milad y cols., Rev Chil Pediatr 2010) antes de 40 semanas cumplidas (EG + edad cronológica) y al nacimiento; OMS 2006 desde 40 semanas con edad corregida; MINSAL, Norma Técnica N.º 218 (2021)." },
     ninos: { form: "f-ninos", res: "r-ninos", titulo: "Niños, niñas y adolescentes", ref: "Patrones de crecimiento MINSAL 2018 (OMS 2006/2007)." },
     emb: { form: "f-emb", res: "r-emb", titulo: "Gestantes", ref: "Curva de Atalah modificada, MINSAL 2019; incremento de peso según estado pregestacional (MINSAL)." },
     adultos: { form: "f-adultos", res: "r-adultos", titulo: "Adultos", ref: "IMC OMS; cintura OMS 2008; Frisancho 1981; Durnin y Womersley 1974 con Siri 1961; Gallagher 2000." },
