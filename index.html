@@ -1202,8 +1202,10 @@ html.rp-open main,html.rp-open .topbar{display:none!important}
   var GEST_LABEL = ["Bajo peso", "Normal", "Sobrepeso", "Obesidad"];
   // incremento recomendado según estado pregestacional (MINSAL; Manual UDD, Tabla 4)
   var GANANCIA = [
-    { estado: "Bajo peso", rango: "IMC < 18,5", total: [12, 18], semanal: [400, 600], multiple: null },
-    { estado: "Normal", rango: "IMC 18,5 a 24,9", total: [10, 13], semanal: [330, 420], multiple: [15, 17] },
+    // MINSAL 2019 (Nutrición y alimentación en la gestante, 27-05-2019, tabla "Modificación MINSAL 2019"): bajo peso 12 a 15 kg; normal 330 a 430 g/semana.
+    // Embarazo múltiple según la tabla del MINSAL (normal "17-15", sobrepeso 14-23, obesidad 11-19).
+    { estado: "Bajo peso", rango: "IMC < 18,5", total: [12, 15], semanal: [400, 600], multiple: null },
+    { estado: "Normal", rango: "IMC 18,5 a 24,9", total: [10, 13], semanal: [330, 430], multiple: [15, 17] },
     { estado: "Sobrepeso", rango: "IMC 25,0 a 29,9", total: [7, 10], semanal: [230, 330], multiple: [14, 23] },
     { estado: "Obesidad", rango: "IMC ≥ 30,0", total: [6, 7], semanal: [200, 230], multiple: [11, 19] }
   ];
