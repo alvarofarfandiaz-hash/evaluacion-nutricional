@@ -1,0 +1,32 @@
+{
+  "id": "/evaluacion-nutricional/",
+  "name": "Evaluación Nutricional",
+  "short_name": "EvalNutri",
+  "description": "Herramienta de evaluación nutricional antropométrica para distintas etapas del ciclo vital.",
+  "lang": "es",
+  "start_url": "/evaluacion-nutricional/",
+  "scope": "/evaluacion-nutricional/",
+  "display": "standalone",
+  "background_color": "#f5f4f8",
+  "theme_color": "#4a1d96",
+  "icons": [
+    {
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

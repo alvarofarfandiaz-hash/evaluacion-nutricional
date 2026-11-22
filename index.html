@@ -406,6 +406,7 @@ details.opt summary,details.ref summary{font-weight:600}
 @media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
 </style>
 
+<link rel="manifest" href="./manifest.webmanifest">
 </head>
 <body>
 <header class="topbar">
@@ -3817,5 +3818,13 @@ ENUTA.NANEAS = {"zemel":{"inf":{"F":{"w":[[0.0,0.192,3.069,0.145],[1.0,0.131,3.6
 
 </script>
 
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", function () {
+    navigator.serviceWorker.register("./sw.js", {scope: "./"})
+      .catch(function (error) { console.warn("EvalNutri PWA:", error); });
+  });
+}
+</script>
 </body>
 </html>
